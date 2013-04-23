@@ -129,7 +129,7 @@ volume_widget = wibox.widget.textbox()
 vicious.register(volume_widget, vicious.widgets.volume,
   function(widget,args)
     if args[1] == 0 or args[2] == "♩" then
-      return '<span color="red">'..args[1]..'% </span> '
+      return '<span color="red">'..args[1]..'%</span> '
     else return ""..args[1].."% "
     end
   end, 1, "Master")
