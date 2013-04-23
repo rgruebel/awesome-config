@@ -37,6 +37,11 @@ end
 -- }}}
 
 -- {{{ Variable definitions
+--Hostnames
+currentHostname = io.popen("uname -n"):read()
+--Define the available hostnames
+laptopHostname = "rgruebelLaptop"
+desktopHostname = "rgruebelDesktop"
 -- Themes define colours, icons, and wallpapers
 beautiful.init(awful.util.getdir("config") .. "/themes/custom/theme.lua")
 
@@ -122,18 +127,19 @@ volume_widget = wibox.widget.textbox()
 vicious.register(volume_widget, vicious.widgets.volume, "$1% ", 1, "Master")
 volume_icon = wibox.widget.imagebox()
 volume_icon:set_image(beautiful.volume_icon)
-
-batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, 
-function(widget,args)
-    local formatstring = "Bat: ["..args[1]..args[2] .."%".. " | "..args[3] .. "] "
-    if args[2] <= 40 and args[1] == "-" then
-         return "".. formatstring .. ""
-    end
-    return formatstring
-end, 60, "BAT0")
+if currentHostname == laptopHostname then
+  batwidget = wibox.widget.textbox()
+  vicious.register(batwidget, vicious.widgets.bat, 
+  function(widget,args)
+      local formatstring = "Bat: ["..args[1]..args[2] .."%".. " | "..args[3] .. "] "
+      if args[2] <= 40 and args[1] == "-" then
+           return "".. formatstring .. ""
+      end
+      return formatstring
+  end, 60, "BAT0")
 bat_icon = wibox.widget.imagebox()
 bat_icon:set_image(beautiful.bat_icon)
+end
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
@@ -215,7 +221,9 @@ for s = 1, screen.count() do
     right_layout:add(volume_icon)
     right_layout:add(volume_widget)
     --right_layout:add(bat_icon)
-    right_layout:add(batwidget)
+    if currentHostname == laptopHostname then
+      right_layout:add(batwidget)
+    end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
