@@ -136,15 +136,22 @@ vicious.register(volume_widget, vicious.widgets.volume,
  
 volume_icon = wibox.widget.imagebox()
 volume_icon:set_image(beautiful.volume_icon)
+--Connect buttons to volume icon
 volume_icon:buttons(awful.util.table.join(
-   awful.button({ }, 4, function () awful.util.spawn("amixer set Master 9%+", false)
-    vicious.force({ volume_widget, })
+   awful.button({ }, 4, 
+    function () 
+      awful.util.spawn("amixer set Master 9%+", false)
+      vicious.force({ volume_widget, })
     end),
-   awful.button({ }, 5, function () awful.util.spawn("amixer set Master 9%-", false) 
-    vicious.force({ volume_widget, })
+   awful.button({ }, 5, 
+    function () 
+      awful.util.spawn("amixer set Master 9%-", false) 
+      vicious.force({ volume_widget, })
     end),
-   awful.button({ }, 1, function () awful.util.spawn("amixer sset Master toggle", false) 
-    vicious.force({ volume_widget, })
+   awful.button({ }, 1, 
+    function () 
+      awful.util.spawn("amixer sset Master toggle", false) 
+      vicious.force({ volume_widget, })
     end)
  ))
 
