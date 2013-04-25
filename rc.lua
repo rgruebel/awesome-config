@@ -120,7 +120,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 --mytextclock = awful.widget.textclock()
 mytextclock = wibox.widget.textbox()
-vicious.register(mytextclock, vicious.widgets.date, "%b %d, %R", 60)
+vicious.register(mytextclock, vicious.widgets.date, " %b %d, %R", 60)
 
 -- Create volume widget
 volume_widget = wibox.widget.imagebox()
@@ -130,7 +130,6 @@ vicious.register(volume_widget, vicious.widgets.volume,
   function(widget,args)
     vol_id = naughty.notify({ title = "Lautstärke", text = ""..args[1].."% ", timeout = 5, replaces_id = vol_id }).id
     if args[1] == 0 or args[2] == "♩" then
-      --return '<span color="red">'..args[1]..'%</span> '
       volume_widget:set_image(beautiful.volume_mute_icon)
     else volume_widget:set_image(beautiful.volume_icon)
     end
