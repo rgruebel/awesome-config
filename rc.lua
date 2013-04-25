@@ -123,38 +123,23 @@ mytextclock = wibox.widget.textbox()
 vicious.register(mytextclock, vicious.widgets.date, "%b %d, %R", 60)
 
 -- Create volume widget
-volume_widget = wibox.widget.textbox()
+volume_widget = wibox.widget.imagebox()
 --vicious.register(volume_widget, vicious.widgets.volume, "$1% ", 1, "Master")
-
+local vol_id=nil    -- replace_id for volume notification
 vicious.register(volume_widget, vicious.widgets.volume,
   function(widget,args)
+    vol_id = naughty.notify({ title = "Lautstärke", text = ""..args[1].."% ", timeout = 5, replaces_id = vol_id }).id
     if args[1] == 0 or args[2] == "♩" then
-      return '<span color="red">'..args[1]..'%</span> '
-    else return ""..args[1].."% "
+      --return '<span color="red">'..args[1]..'%</span> '
+      volume_widget:set_image(beautiful.volume_mute_icon)
+    else volume_widget:set_image(beautiful.volume_icon)
     end
-  end, 17, "Master")
- 
-volume_icon = wibox.widget.imagebox()
-volume_icon:set_image(beautiful.volume_icon)
+  end, 0, "Master")
+
+
+volume_widget:set_image(beautiful.volume_icon)
 --Connect buttons to volume icon
 --TODO: Write functions
-volume_icon:buttons(awful.util.table.join(
-   awful.button({ }, 4, 
-    function () 
-      awful.util.spawn("amixer set Master 9%+", false)
-      vicious.force({ volume_widget, })
-    end),
-   awful.button({ }, 5, 
-    function () 
-      awful.util.spawn("amixer set Master 9%-", false) 
-      vicious.force({ volume_widget, })
-    end),
-   awful.button({ }, 1, 
-    function () 
-      awful.util.spawn("amixer sset Master toggle", false) 
-      vicious.force({ volume_widget, })
-    end)
- ))
 volume_widget:buttons(awful.util.table.join(
    awful.button({ }, 4, 
     function () 
@@ -172,6 +157,7 @@ volume_widget:buttons(awful.util.table.join(
       vicious.force({ volume_widget, })
     end)
  ))
+
 if currentHostname == laptopHostname then
   batwidget = wibox.widget.textbox()
   vicious.register(batwidget, vicious.widgets.bat, 
@@ -268,7 +254,6 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(volume_icon)
     right_layout:add(volume_widget)
     --right_layout:add(bat_icon)
     if currentHostname == laptopHostname then
