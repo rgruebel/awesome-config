@@ -120,7 +120,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 --mytextclock = awful.widget.textclock()
 mytextclock = wibox.widget.textbox()
-vicious.register(mytextclock, vicious.widgets.date, " %b %d, %R", 60)
+vicious.register(mytextclock, vicious.widgets.date, " %b %d, %R ", 60)
 
 -- Create volume widget
 volume_widget = wibox.widget.imagebox()
