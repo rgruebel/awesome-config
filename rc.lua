@@ -164,7 +164,7 @@ if currentHostname == laptopHostname then
       if args[2] <= 10 then
         naughty.notify({ text="Akku fast leer bitte laden!"})
       end
-      local formatstring = "Bat: ["..args[1]..args[2] .."%".. " | "..args[3] .. "] "
+      local formatstring = " Bat:["..args[1]..args[2] .."%".. " | "..args[3] .. "]"
       if args[2] <= 40 and args[1] == "-" then
            return "".. formatstring .. ""
       end
