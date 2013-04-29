@@ -16,6 +16,8 @@ theme.wallpaper = "~/Insync/r.gruebel@bitbeans.de/09.jpg"
 theme.volume_icon = "~/.config/awesome/themes/custom/volume.png"
 theme.volume_mute_icon = "~/.config/awesome/themes/custom/volume_mute.png"
 theme.bat_icon = "~/.config/awesome/themes/custom/bat.png"
+theme.monitor_icon = "~/.config/awesome/themes/custom/monitor.png"
+
 -- {{{ Styles
 theme.font      = "sans 8"
 
