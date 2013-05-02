@@ -274,8 +274,7 @@ vicious.register(volume_widget, vicious.widgets.volume,
     end
   end, 0, "Master")
 
-
-volume_widget:set_image(beautiful.volume_icon)
+vicious.force({ volume_widget, })
 --Connect buttons to volume icon
 --TODO: Write functions
 volume_widget:buttons(awful.util.table.join(
