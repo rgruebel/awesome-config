@@ -9,7 +9,7 @@
 -- {{{ Main
 theme = {}
 --theme.wallpaper = "~/.config/awesome/themes/custom/zenburn-background.png"
-theme.wallpaper = "~/Insync/r.gruebel@bitbeans.de/09.jpg"
+theme.wallpaper = "~/.config/awesome/themes/custom/09.jpg"
 -- }}}
 --//Custom Icons
 
